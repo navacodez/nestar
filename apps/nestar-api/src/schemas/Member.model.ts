@@ -60,6 +60,11 @@ const MemberSchema = new Schema({
         default: 0,
     },
 
+    memberArticles: {
+        type: Number,
+        default: 0,
+    },
+
     memberFollowers: {
         type: Number,
         default: 0,
@@ -90,7 +95,7 @@ const MemberSchema = new Schema({
         default: 0,
     },
 
-    memberRanks: {
+    memberRank: {
         type: Number,
         default: 0,
     },

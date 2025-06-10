@@ -18,7 +18,8 @@ import { DatabaseModule } from './database/database.module';
       autoSchemaFile: true,
   }),
     ComponentsModule,
-    DatabaseModule],
+    DatabaseModule
+  ],
   controllers: [AppController],
   providers: [AppService, AppResolver],
 })

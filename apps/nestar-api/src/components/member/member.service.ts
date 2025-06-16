@@ -17,8 +17,8 @@ export class MemberService {
           //TODO: Authentication via TOKEN
           return result;
         } catch(err) {
-            console.log("Error, Service.model:", err);
-            throw new BadRequestException(err);
+           console.log('Error, Service.model:', err.message);
+		   throw new BadRequestException(Message.USED_MEMBER_NICK_OR_PHONE);
         }
     }
 
@@ -29,7 +29,7 @@ export class MemberService {
         .findOne({ memberNick: memberNick })
         .select('+memberPassword')
         .exec(); Member
-        
+
 
         if(!response || response.memberStatus === MemberStatus.DELETE) {
             throw new InternalServerErrorException(Message.NO_MEMBER_NICK);

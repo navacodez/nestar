@@ -6,9 +6,11 @@ import { MemberStatus } from '../../libs/enums/member.enum';
 import { MongooseModule } from '@nestjs/mongoose';
 import MemberSchema from '../../schemas/Member.model';
 import { AuthModule } from '../auth/auth.module';
+import { ViewModule } from '../../libs/dto/view/view.module';
+
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: 'Member', schema: MemberSchema }]), AuthModule],
+  imports: [MongooseModule.forFeature([{ name: 'Member', schema: MemberSchema }]), AuthModule, ViewModule],
   providers: [MemberResolver, MemberService]
 })
 export class MemberModule {}

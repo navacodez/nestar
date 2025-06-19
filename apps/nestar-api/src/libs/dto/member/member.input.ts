@@ -29,7 +29,7 @@ export class MemberInput {
     @IsOptional()
     @Field(() => MemberAuthType, {nullable: true})
     memberAuthType?: MemberAuthType;
-  memberStatus: import("/Users/navacodez/Documents/nestar/apps/nestar-api/src/libs/enums/member.enum").MemberStatus;
+    memberStatus: MemberType;
 }
 
 @InputType()

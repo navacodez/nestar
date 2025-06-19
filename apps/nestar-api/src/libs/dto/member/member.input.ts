@@ -28,7 +28,6 @@ export class MemberInput {
 
     @IsOptional()
     @Field(() => MemberAuthType, {nullable: true})
-    memberAuthType?: MemberAuthType;
     memberStatus: MemberType;
 }
 

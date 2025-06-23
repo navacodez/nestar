@@ -45,8 +45,8 @@ export class Member {
     @Field(() => Int)
     memberFollowers: number;
     
-    @Field(() => Int)
-    memberFollowings: number;
+    @Field(() => Int, { nullable: true })
+    memberFollowings?: number;
 
     @Field(() => Int)
     memberPoints: number;

@@ -67,4 +67,42 @@ export class BoardArticleResolver {
 		console.log('Query: getBoardArticles');
 		return await this.boardArticleService.getBoardArticles(memberId, input);
 	}
+
+	//** ADMIN **/
+	// getAllBoardArticlesByAdmin
+	@Roles(MemberType.ADMIN)
+	@UseGuards(RolesGuard)
+	@Query((returns) => BoardArticles)
+	public async getAllBoardArticlesByAdmin(
+		@Args('input') input: AllBoardArticlesInquiry,
+		@AuthMember('_id') memberId: ObjectId,
+	): Promise<BoardArticles> {
+		console.log('Query: getAllBoardArticlesByAdmin');
+		return await this.boardArticleService.getAllBoardArticlesByAdmin(input);
+	}
+
+	// updateBoardArticlesByAdmin
+	@Roles(MemberType.ADMIN)
+	@UseGuards(RolesGuard)
+	@Mutation((returns) => BoardArticle)
+	public async updateBoardArticleByAdmin(
+		@Args('input') input: BoardArticleUpdate,
+		@AuthMember('_id') memberId: ObjectId,
+	): Promise<BoardArticle> {
+		console.log('Mutation: updateBoardArticleByAdmin');
+		return await this.boardArticleService.updateBoardArticleByAdmin(input);
+	}
+
+	// removeBoardArticleByAdmin
+	@Roles(MemberType.ADMIN)
+	@UseGuards(RolesGuard)
+	@Mutation((returns) => BoardArticle)
+	public async removeBoardArticleByAdmin(
+		@Args('articleId') input: string,
+		@AuthMember('_id') memberId: ObjectId,
+	): Promise<BoardArticle> {
+		console.log('Mutation: removeBoardArticleByAdmin');
+		const articleId = shapeIntoMongoObjectId(input);
+		return await this.boardArticleService.removeBoardArticleByAdmin(articleId);
+	}
 }

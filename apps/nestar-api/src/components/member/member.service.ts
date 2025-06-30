@@ -152,7 +152,7 @@ export class MemberService {constructor(
 		const { _id, targetKey, modifier } = input;
 
 		const result = await this.memberModel
-			.findOneAndUpdate({ _id }, { $inc: { [targetKey]: modifier } }, { new: true })
+			.findByIdAndUpdate({ _id }, { $inc: { [targetKey]: modifier } }, { new: true })
 			.exec();
 
 		if (!result) {

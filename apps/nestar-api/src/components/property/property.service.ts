@@ -6,6 +6,7 @@ import { MemberService } from '../member/member.service';
 import {
 	AgentPropertiesInquiry,
 	AllPropertiesInquiry,
+	OrdinaryInquiry,
 	PropertiesInquiry,
 	PropertyInput,
 } from '../../libs/dto/property/property.input';
@@ -172,7 +173,13 @@ public async getProperty(memberId: ObjectId, propertyId: ObjectId): Promise<Prop
 				return { [ele]: true };
 			});
 		}
-	}public async getAgentProperties(memberId: ObjectId, input: AgentPropertiesInquiry): Promise<Properties> {
+	}
+
+	public async getFavorites(memberId: ObjectId, input: OrdinaryInquiry): Promise<Properties> {
+		return await this.likeService.getFavoritProperties(memberId, input);
+	}
+	
+	public async getAgentProperties(memberId: ObjectId, input: AgentPropertiesInquiry): Promise<Properties> {
 		const { propertyStatus } = input.search;
 		if (propertyStatus === PropertyStatus.DELETE) throw new InternalServerErrorException(Message.NOT_ALLOWED_REQUEST);
 
